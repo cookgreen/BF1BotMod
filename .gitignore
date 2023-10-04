@@ -1,3 +1,5 @@
+.vs/*
+
 # Prerequisites
 *.d
 
@@ -6,8 +8,6 @@
 *.lo
 *.o
 *.obj
-
-.vs/*
 
 # Precompiled Headers
 *.gch
