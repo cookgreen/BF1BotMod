@@ -1,4 +1,10 @@
 .vs/*
+BF1BotMod/Debug/*
+BF1BotMod/Release/*
+BF1BotModInjector/Debug/*
+BF1BotModInjector/Release/*
+
+*.pdb
 
 # Prerequisites
 *.d
