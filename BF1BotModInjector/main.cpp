@@ -1,8 +1,11 @@
 ﻿#include <Windows.h>
 #include <tlhelp32.h>
 #include <libloaderapi.h>
+#include <iostream>
 
-void make_full_path(char* full_path, const char* file_name, const char* file_ext)
+using namespace std;
+
+void makeCurrentFullPath(char* full_path, const char* file_name, const char* file_ext)
 {
 	char szPath[MAX_PATH] = { 0 };
 	GetModuleFileNameA(NULL, szPath, MAX_PATH);
@@ -16,8 +19,8 @@ void make_full_path(char* full_path, const char* file_name, const char* file_ext
 
 int main(int argc, char** argv)
 {
-	char dll_full_path[MAX_PATH];
-	make_full_path(dll_full_path, "BF1BotMod", "dll");
+	char bfBotModDll[MAX_PATH] = { 0 };
+	makeCurrentFullPath(bfBotModDll, "BF1BotMod", "dll");
 
 	HANDLE snapshot = 0; 
 	DWORD exitCode = 0;
@@ -29,23 +32,54 @@ int main(int argc, char** argv)
 	Process32First(snapshot, &pe32);
 
 	do {
+		//std::wcout << pe32.szExeFile << std::endl;
+
 		if (wcscmp(pe32.szExeFile, L"bf1.exe") == 0)
 		{
-			HANDLE process = OpenProcess(PROCESS_ALL_ACCESS, true, pe32.th32ProcessID);
-			void* lpBaseAddress = VirtualAllocEx(process, NULL, strlen(dll_full_path) + 1, MEM_COMMIT, PAGE_READWRITE);
-			WriteProcessMemory(process, lpBaseAddress, dll_full_path, strlen(dll_full_path) + 1, NULL);
-			
-			HMODULE kernel32base = GetModuleHandle(L"kernel32.dll");
-			
-			HANDLE thread = CreateRemoteThread(process, NULL, 0, (LPTHREAD_START_ROUTINE)GetProcAddress(kernel32base, "LoadLibraryA"), lpBaseAddress, 0, NULL);
-			
-			WaitForSingleObject(thread, INFINITE);
-			GetExitCodeThread(thread, &exitCode);
+			HANDLE process = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_CREATE_THREAD, true, pe32.th32ProcessID);
+			void* lpBaseAddress = VirtualAllocEx(process, NULL, strlen(bfBotModDll), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+			if (lpBaseAddress != 0)
+			{
+				BOOL succeededWriting = WriteProcessMemory(process, lpBaseAddress, bfBotModDll, strlen(bfBotModDll), NULL);
 
-			VirtualFreeEx(process, lpBaseAddress, 0, MEM_RELEASE);
-			CloseHandle(thread);
-			CloseHandle(process);
-			break;
+				HMODULE kernel32base = GetModuleHandleA("Kernel32");
+				if (kernel32base != 0)
+				{
+					LPVOID loadLibraryAddress = (LPVOID)GetProcAddress(kernel32base, "LoadLibraryA");
+					HANDLE thread = CreateRemoteThread(process, nullptr, NULL, (LPTHREAD_START_ROUTINE)loadLibraryAddress, lpBaseAddress, 0, NULL);
+
+					if (thread != 0)
+					{
+						WaitForSingleObject(thread, INFINITE);
+						GetExitCodeThread(thread, &exitCode);
+						VirtualFreeEx(process, lpBaseAddress, 0, MEM_RELEASE);
+						CloseHandle(thread);
+						CloseHandle(process);
+						break;
+					}
+					else
+					{
+						std::cout << "The thread is invalid!";
+						std::cin.get();
+
+						return 0;
+					}
+				}
+				else
+				{
+					std::cout << "The kernel is invalid!";
+					std::cin.get();
+
+					return 0;
+				}
+			}
+			else
+			{
+				std::cout << "The base address is invalid!";
+				std::cin.get();
+
+				return 0;
+			}
 		}
 	} while (Process32Next(snapshot, &pe32));
 
