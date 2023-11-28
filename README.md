@@ -7,7 +7,7 @@ Visual Studio 2022
 DirectX 9 SDK (June 2010)  
 
 ## Usage
-Run the `BF1BotModInjector.exe` in the `Bin` folder  
+Run the `BF1BotModInjector.exe` in the `Bin` folder after you compile the project and run the Battlefield1  
 
 ## License  
 GNU GPLv3  
