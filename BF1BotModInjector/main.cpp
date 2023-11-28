@@ -19,6 +19,8 @@ void makeCurrentFullPath(char* full_path, const char* file_name, const char* fil
 
 int main(int argc, char** argv)
 {
+	BOOL foundBF1Process = 0;
+
 	char bfBotModDll[MAX_PATH] = { 0 };
 	makeCurrentFullPath(bfBotModDll, "BF1BotMod", "dll");
 
@@ -36,6 +38,8 @@ int main(int argc, char** argv)
 
 		if (wcscmp(pe32.szExeFile, L"bf1.exe") == 0)
 		{
+			foundBF1Process = 1;
+
 			HANDLE process = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_CREATE_THREAD, true, pe32.th32ProcessID);
 			void* lpBaseAddress = VirtualAllocEx(process, NULL, strlen(bfBotModDll), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 			if (lpBaseAddress != 0)
@@ -59,7 +63,7 @@ int main(int argc, char** argv)
 					}
 					else
 					{
-						std::cout << "The thread is invalid!";
+						std::cout << "[BF1 Injector][Error]: The thread is invalid!";
 						std::cin.get();
 
 						return 0;
@@ -67,7 +71,7 @@ int main(int argc, char** argv)
 				}
 				else
 				{
-					std::cout << "The kernel is invalid!";
+					std::cout << "[BF1 Injector][Error]: The kernel is invalid!";
 					std::cin.get();
 
 					return 0;
@@ -75,13 +79,19 @@ int main(int argc, char** argv)
 			}
 			else
 			{
-				std::cout << "The base address is invalid!";
+				std::cout << "[BF1 Injector][Error]: The base address is invalid!";
 				std::cin.get();
 
 				return 0;
 			}
 		}
 	} while (Process32Next(snapshot, &pe32));
+
+	if (!foundBF1Process)
+	{
+		cout << "[BF1 Injector][Error]: No any battlefield1 process found, press any key to exit." << endl;
+		std::cin.get();
+	}
 
 	return 0;
 }
