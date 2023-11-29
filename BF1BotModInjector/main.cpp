@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void makeCurrentFullPath(char* full_path, const char* file_name, const char* file_ext)
+void getCurrentFullPathByFile(char* full_path, const char* file_name, const char* file_ext)
 {
 	char szPath[MAX_PATH] = { 0 };
 	GetModuleFileNameA(NULL, szPath, MAX_PATH);
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	BOOL foundBF1Process = 0;
 
 	char bfBotModDll[MAX_PATH] = { 0 };
-	makeCurrentFullPath(bfBotModDll, "BF1BotMod", "dll");
+	getCurrentFullPathByFile(bfBotModDll, "BF1BotMod", "dll");
 
 	HANDLE snapshot = 0; 
 	DWORD exitCode = 0;
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 					}
 					else
 					{
-						std::cout << "[BF1 Injector][Error]: The thread is invalid!";
+						std::cout << "[BF1 Bot Mod Injector][Error]: The thread is invalid!";
 						std::cin.get();
 
 						return 0;
@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 				}
 				else
 				{
-					std::cout << "[BF1 Injector][Error]: The kernel is invalid!";
+					std::cout << "[BF1 Bot Mod Injector][Error]: The kernel is invalid!";
 					std::cin.get();
 
 					return 0;
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 			}
 			else
 			{
-				std::cout << "[BF1 Injector][Error]: The base address is invalid!";
+				std::cout << "[BF1 Bot Mod Injector][Error]: The base address is invalid!";
 				std::cin.get();
 
 				return 0;
@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 
 	if (!foundBF1Process)
 	{
-		cout << "[BF1 Injector][Error]: No any battlefield1 process found, press any key to exit." << endl;
+		cout << "[BF1 Bot Mod Injector][Error]: No any battlefield1 process found, press any key to exit." << endl;
 		std::cin.get();
 	}
 
