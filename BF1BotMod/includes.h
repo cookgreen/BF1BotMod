@@ -40,3 +40,5 @@
 #include "draw-list/draw-list.h"
 #include "features/features.h"
 
+#include "console.h"
+

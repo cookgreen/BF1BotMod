@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="draw-list\draw-list.cpp" />
     <ClCompile Include="features\features.cpp" />
@@ -102,6 +103,7 @@
     <ClCompile Include="vars\vars.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="console.h" />
     <ClInclude Include="draw-list\draw-list.h" />
     <ClInclude Include="features\features.h" />
     <ClInclude Include="globals.h" />
