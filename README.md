@@ -6,6 +6,9 @@ Unofficial addon for Battlefield 1 which allow players to play match with Bots
 MSVC C++  
 Visual Studio 2022  
 
+## Based on  
+ImGui  
+
 ## Usage
 Run the `BF1BotModInjector.exe` in the `Bin` folder after you compile the project and run the Battlefield1  
 
