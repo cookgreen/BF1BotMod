@@ -20,9 +20,6 @@
     <ClCompile Include="imgui\imgui_draw.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SDK\sdk.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="imgui\imgui_demo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -36,36 +33,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="memory_utils\memory_utils.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="math\qangle\qangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="math\vector\vector.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="draw-list\draw-list.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="features\features.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="hook\hook.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="menu\fonts.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="menu\menu.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="vars\vars.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="globals.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
@@ -83,12 +50,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="imgui\examples\directx9_example\imgui_impl_dx9.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SDK\FrostBite.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SDK\sdk.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_dx11.h">
@@ -109,40 +70,7 @@
     <ClInclude Include="includes.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="memory_utils\memory_utils.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="minhook\minhook.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="math\martix4x4\matrix4x4.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="math\qangle\qangle.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="math\vector\vector.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="draw-list\draw-list.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="features\features.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="hook\hook.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="menu\fonts.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="menu\menu.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="vars\vars.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="globals.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
