@@ -1,5 +1,6 @@
 # BF1 Bot Mod
-Unofficial addon for Battlefield 1 which allow players to play match with Bots
+Unofficial addon for Battlefield 1 which allow players to play match with Bots  
+**Status**: Developing  
 
 ## Environment
 MSVC C++  
